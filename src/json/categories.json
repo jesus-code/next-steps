@@ -1,0 +1,82 @@
+{
+    "A": {
+      "category": "Taking the First Step in Faith",
+      "classes": [
+        {"title": "Worshiping Together", "url": "http://hopewdm.org", "desc": "Come to church!"},
+        {"title": "Alpha", "url": "http://hopewdm.org", "desc": "If you are \"new\" to Christianity, or are a seasoned Christian wanting to brush up on the basics, we suggest Alpha as a great way to get connected and grow! Through the years, thousands of people have participated in Alpha here at Hope."},
+        {"title": "Revive (Young Adult Ministries)", "url": "http://hopewdm.org", "desc": "Thursdays, 7:00-8:15 pm (will take a break Nov. 22, April 18 & July 4)\n\nThis casual, come-as-you-are worship service for young adults (college-age and those in their 20s & 30s) is a great way to worship through music, God’s word and a message. The worship is intimate and Spirit-led, and the messages are specific to young adult life. All young adults welcome!"}]
+    },
+    "B": {
+      "category": "Pursuing Wholeness and Healing",
+      "classes": [
+        {"title": "Opportunities to Receive Prayer", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Inner Healing Prayer", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Recovery Ministries", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Support Ministries", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Financial Peace University", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "C": {
+      "category": "Building a Solid Foundation",
+      "classes": [
+        {"title": "Worshipping Together", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "CORE Series", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Apprentice Series", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "D": {
+      "category": "Getting into Community",
+      "classes": [
+        {"title": "Life Groups", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Men’s and Women’s Ministries", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Fifties Plus Ministries", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Revive Community (Young Adult)", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "E": {
+      "category": "Learning How to Pray",
+      "classes": [
+        {"title": "Let Prayer Change Your Life", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "School for Listening Prayer", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Prayer Ministry Training", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "F": {
+      "category": "Getting to Know the Bible",
+      "classes": [
+        {"title": "Discovering God’s Story", "url": "http://hopewdm.org", "desc": ""},
+        {"title": " Biblical Survey", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Bible Study Tools", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Studying Books of the Bible", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "G": {
+      "category": "Discovering God’s Will",
+      "classes": [
+        {"title": "Purposeful Living Series", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Life Discernment Seminars", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Building a Life Map Timeline", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Revive (Young Adult Ministries)", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "H": {
+      "category": "Living a Life that Matters",
+      "classes": [
+        {"title": "Mission Opportunities, Local and Global", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Leadership in and outside of Church", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Volunteering in and outside of Church", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Equip", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Revive Serving (Young Adult Ministries)", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "I": {
+      "category": "Marriage and Parenting",
+      "classes": [
+        {"title": "Married People Night Outs & Retreats", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Pre-Marriage Course", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Alpha Marriage Course", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Parenting Courses", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Men’s and Women’s Ministries", "url": "http://hopewdm.org", "desc": ""}]
+    },
+    "J": {
+      "category": "Pursuing Healthy Lifestyle",
+      "classes": [
+        {"title": "Financial Peace University", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Daniel Plan (Course)", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Fitness Classes", "url": "http://hopewdm.org", "desc": ""},
+        {"title": "Sports and Fitness Classes and Events", "url": "http://hopewdm.org", "desc": ""}]
+    }
+  }
