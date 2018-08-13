@@ -101,8 +101,8 @@ class SummaryPage extends React.Component {
 
               {c.classes.map((classObj, idx) => {
                 return (
-                  <ClassCard key={idx} title={classObj.title} shortDescription={classObj.shortDesc} 
-                             longDescription={"long"} link={classObj.url}/>
+                  <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc}
+                             longDesc={classObj.longDesc} url={classObj.url} schedule={classObj.schedule}/>
                 );
               })}
               </Grid>

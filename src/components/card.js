@@ -11,15 +11,16 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import LinkIcon from '@material-ui/icons/Link';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const styles = theme => ({
   card: {
     width: 400,
     marginBottom: "8px",
     textAlign: "center",
+  },
+  paragraphText: {
+    textAlign: "left",
   },
   media: {
     height: 0,
@@ -54,7 +55,7 @@ class ClassCard extends React.Component {
   };
 
   render() {
-    const { classes, title, shortDescription, longDescription, link, whenData, imageURL } = this.props;
+    const { classes, title, shortDesc, longDesc, url, schedule, imageURL } = this.props;
 
     return (
       <div>
@@ -71,39 +72,42 @@ class ClassCard extends React.Component {
             //   </IconButton>
             // }
             title={title}
-            subheader={whenData}
+            subheader={schedule}
           />
           <CardContent>
-            <Typography component="p">
-              {shortDescription}
+            <Typography component="p" className={classes.paragraphText}>
+              {shortDesc}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton aria-label="Find more info">
-              <LinkIcon href={link} />
+              <LinkIcon href={url} />
             </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              className={classnames(classes.expand, {
-                [classes.expandOpen]: this.state.expanded,
-              })}
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
+            {/*<IconButton aria-label="Share">*/}
+              {/*<ShareIcon />*/}
+            {/*</IconButton>*/}
+            {longDesc !== null && longDesc.length !== 0 &&
+              <IconButton
+                className={classnames(classes.expand, {
+                  [classes.expandOpen]: this.state.expanded,
+                })}
+                onClick={this.handleExpandClick}
+                aria-expanded={this.state.expanded}
+                aria-label="Show more"
+              >
+                <ExpandMoreIcon/>
+              </IconButton>
+            }
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph variant="body2">
-                Details:
-              </Typography>
-              <Typography paragraph>
-                {longDescription}
-              </Typography>
+              {longDesc.map((desc, idx) => {
+                return (
+                  <Typography key={idx} paragraph className={classes.paragraphText}>
+                    {desc}
+                  </Typography>
+                );
+              })}
             </CardContent>
           </Collapse>
         </Card>
@@ -115,10 +119,10 @@ class ClassCard extends React.Component {
 ClassCard.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  shortDescription: PropTypes.string.isRequired,
-  longDescription: PropTypes.string.isRequired,
-  link:PropTypes.string.isRequired,
-  whenData:PropTypes.string,
+  shortDesc: PropTypes.string.isRequired,
+  longDesc: PropTypes.array.isRequired,
+  url:PropTypes.string.isRequired,
+  schedule:PropTypes.string.isRequired,
   imageURL:PropTypes.string,
 };
 
