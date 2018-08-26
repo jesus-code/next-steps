@@ -6,7 +6,7 @@ const questionJSON =
       {"text":"I’m not sure who Jesus is and what I believe about him.", "categories":["A"]},
       {"text":"I often find Bible reading to be a challenge.", "categories":["C"]},
       {"text":"I have difficulty experience God as loving and compassionate.", "categories":["C", "B"]},
-      {"text":"I’m not quite sure how to talk to God.", "categories":["A,  E"]},
+      {"text":"I’m not quite sure how to talk to God.", "categories":["A", "E"]},
       {"text":"I would really like to get my finances under control.", "categories":["J"]},
       {"text":"I would like to know how invest more in my spouse.", "categories":["I"]},
       {"text":"I’m often unclear about what God is trying to teach me.", "categories":["C", "F", "G"]},
