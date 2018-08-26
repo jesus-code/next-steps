@@ -7,8 +7,9 @@ import Button from '@material-ui/core/Button';
 import IntroPage from "./intro";
 import Questions from "./questions";
 import SummaryPage from "./summary";
-import {categoryJSON, questionJSON1} from "../data/hope/data";
+import {categoryJSON, questionJSON, classesJSON} from "../data/hope/data";
 import StepButton from "@material-ui/core/StepButton/StepButton";
+import ReactGA from 'react-ga';
 
 const styles = theme => ({
   root: {
@@ -41,14 +42,16 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
+      ReactGA.pageview('/IntroPage');
       return <IntroPage/>;
     case 1:
-      return <Questions questions={questionJSON1.questions}/>;
+      ReactGA.pageview('/Questions');
+      return <Questions questions={questionJSON.questions}/>;
     case 2:
-      return <SummaryPage questions={questionJSON1.questions} categories={categoryJSON.categories}/>;
+      ReactGA.pageview('/SummaryPage');
+      return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON}/>;
     default:
       return 'Unknown step';
-      
   }
 }
 

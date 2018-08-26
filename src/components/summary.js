@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography/Typography";
 import ClassCard from "./card";
 import Grid from "@material-ui/core/Grid/Grid";
+import {appState} from "../state";
+import ReactGA from "react-ga";
 
 const styles = theme => ({
   container: {
@@ -16,7 +18,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
-  welcome: {
+  summary: {
     marginLeft: '80px',
     marginRight: '80px',
   },
@@ -24,13 +26,16 @@ const styles = theme => ({
     marginLeft: '80px',
     marginRight: '80px',
     fontWeight: "bold",
+    color: theme.palette.primary.main,
   },
 });
 
 class SummaryPage extends React.Component {
 
   render() {
-    const { classes, questions, categories } = this.props;
+    const { classes, questions, categories, classesOffered } = this.props;
+    
+    let renderStart = Date.now();
 
     function calculateCategories(questions, categories)
     {
@@ -39,11 +44,17 @@ class SummaryPage extends React.Component {
         for (let catName in categories)
         {
           let cat = categories[catName];
+          if (cat === null || cat === undefined) {
+            ReactGA.exception({
+              description: 'initCategoryTotals - ' + catName,
+              fatal: false
+            });
+            continue;
+          }
           cat.hits = 0;
           cat.total = 0;
         }
       }
-
       initCategoryTotals(categories);
       
       for (let q of questions) {
@@ -51,8 +62,13 @@ class SummaryPage extends React.Component {
           for (let category of q.categories)
           {
             let c = categories[category];
-            if (c == null)
+            if (c === null || c === undefined) {
+              ReactGA.exception({
+                description: 'category is null - ' + category,
+                fatal: false
+              });
               continue;
+            }
             c.hits++;
             c.total = c.total + q.value;
           }
@@ -73,19 +89,77 @@ class SummaryPage extends React.Component {
           return 0;
       });
       
-      catArray = catArray.slice(0, 3);
-      console.log(catArray);
+      catArray = catArray.slice(0, 2);//only take the top two categories
       return catArray;
     }
 
     let sortedCategories = calculateCategories(questions, categories);
 
+    let personAge = appState.personAge;
+    let personGender = appState.personGender;
+    ReactGA.set({"name":appState.personName, "personAge": personAge, "personGender": personGender });
+    
+    function getClasses(classKeys) 
+    {
+      let categoryClasses = [];
+      for (let classKey of classKeys) {
+        let classObj = classesOffered.classes[classKey];
+        if (classObj === null || classObj === undefined) {
+          ReactGA.exception({
+            description: 'Class in category but not in class list - ' + classKey,
+            fatal: false
+          });
+          continue;
+        }
+        if (!classObj.hasOwnProperty("beginAge")) {
+          ReactGA.exception({
+            description: 'Class in category but not in class list - beginAge -- ' + classKey,
+            fatal: false
+          });
+          continue;
+        }
+        if (!classObj.hasOwnProperty("endAge")) {
+          ReactGA.exception({
+            description: 'Class in category but not in class list - endAge -- ' + classKey,
+            fatal: false
+          });
+          continue;
+        }
+        if (!classObj.hasOwnProperty("gender")) {
+          ReactGA.exception({
+            description: 'Class in category but not in class list - gender -- ' + classKey,
+            fatal: false
+          });
+          continue;
+        }
+        if (personAge < classObj.beginAge)
+          continue;
+        if (personAge > classObj.endAge)
+          continue;
+        if (classObj.gender === "either" || classObj.gender === personGender)
+          categoryClasses.push(classObj);
+      }
+      return categoryClasses;
+    }
+    
+    ReactGA.timing({
+      category: 'Function Timings',
+      variable: 'summaryRender',
+      value: Date.now() - renderStart, // in milliseconds
+    });
+
     return (
       <div>
-        <Typography variant="display3" gutterBottom className={classes.welcome} paragraph>
+        <Typography variant="display3" gutterBottom className={classes.summary} >
           Summary
         </Typography>
         {sortedCategories.map((c, index) => {
+
+          ReactGA.event({
+            category: 'ClassCategoryRecommendation',
+            action: c.category,
+            value: c.total,
+          });
           return (
               <Grid
                 key={index}
@@ -99,7 +173,7 @@ class SummaryPage extends React.Component {
                 {c.category}
               </Typography>
 
-              {c.classes.map((classObj, idx) => {
+              {getClasses(c.classes).map((classObj, idx) => {
                 return (
                   <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc}
                              longDesc={classObj.longDesc} url={classObj.url} schedule={classObj.schedule}/>
@@ -117,6 +191,7 @@ SummaryPage.propTypes = {
   classes: PropTypes.object.isRequired,
   questions: PropTypes.array.isRequired,
   categories: PropTypes.object.isRequired,
+  classesOffered: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(SummaryPage);

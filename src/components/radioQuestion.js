@@ -26,8 +26,6 @@ class RadioQuestion extends React.Component {
   };
 
   handleChange = event => {
-
-    console.log(this.props.question);
     this.setState({ value: event.target.value });
     this.props.question.value = parseInt(event.target.value, 10);
     

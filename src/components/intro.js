@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Typography from "@material-ui/core/Typography/Typography";
+import {appState} from "../state";
 
 const styles = theme => ({
   container: {
@@ -27,26 +28,27 @@ const styles = theme => ({
 
 const genders = [
   {
-    value: '0',
+    value: 'male',
     label: 'Male',
   },
   {
-    value: '1',
+    value: 'female',
     label: 'Female',
   },
 ];
 
 class IntroPage extends React.Component {
   state = {
-    name: '',
-    age: '',
-    gender: '',
+    personName: '',
+    personAge: '',
+    personGender: '',
   };
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
+    appState[name] = event.target.value;
   };
 
   render() {
@@ -65,15 +67,15 @@ class IntroPage extends React.Component {
               id="name"
               label="Name (optional)"
               className={classes.textField}
-              value={this.state.name}
-              onChange={this.handleChange('name')}
+              value={this.state.personName}
+              onChange={this.handleChange('personName')}
               margin="normal"
             />
             <TextField
               id="number"
               label="Age"
-              value={this.state.age}
-              onChange={this.handleChange('age')}
+              value={this.state.personAge}
+              onChange={this.handleChange('personAge')}
               type="number"
               className={classes.textField}
               margin="normal"
@@ -83,8 +85,8 @@ class IntroPage extends React.Component {
               select
               label="Gender"
               className={classes.textField}
-              value={this.state.gender}
-              onChange={this.handleChange('gender')}
+              value={this.state.personGender}
+              onChange={this.handleChange('personGender')}
               SelectProps={{
                 MenuProps: {
                   className: classes.menu,

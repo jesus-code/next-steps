@@ -12,12 +12,23 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import LinkIcon from '@material-ui/icons/Link';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import * as ReactGA from "react-ga";
 
 const styles = theme => ({
   card: {
-    width: 400,
+    width: 550,
     marginBottom: "8px",
     textAlign: "center",
+  },
+  [theme.breakpoints.down('xs')]: {
+    card: {
+      width: 350,
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    card: {
+      width: 850,
+    },
   },
   paragraphText: {
     textAlign: "left",
@@ -51,7 +62,21 @@ class ClassCard extends React.Component {
   state = { expanded: false };
 
   handleExpandClick = () => {
+    ReactGA.event({
+      category: 'ClassCategory',
+      action: 'Class expanded',
+      label:this.props.title,
+    });
     this.setState(state => ({ expanded: !state.expanded }));
+  };
+  
+  handleHyperlinkClick = () => {
+    ReactGA.event({
+      category: 'ClassCategory',
+      action: 'Class clicked',
+      label:this.props.url,
+    });
+    window.open(this.props.url, '_blank');
   };
 
   render() {
@@ -80,7 +105,8 @@ class ClassCard extends React.Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Find more info">
+            <IconButton aria-label="Find more info"
+                        onClick={this.handleHyperlinkClick}>
               <LinkIcon href={url} />
             </IconButton>
             {/*<IconButton aria-label="Share">*/}

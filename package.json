@@ -10,6 +10,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-ga": "^2.5.3",
     "react-jss": "latest",
     "react-scripts": "latest"
   },
