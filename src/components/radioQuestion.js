@@ -22,7 +22,7 @@ const styles = theme => ({
 
 class RadioQuestion extends React.Component {
   state = {
-    value: "0",
+    value: this.props.question.value !== undefined ? this.props.question.value.toString() : "",
   };
 
   handleChange = event => {

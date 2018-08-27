@@ -13,6 +13,7 @@ import red from '@material-ui/core/colors/red';
 import LinkIcon from '@material-ui/icons/Link';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as ReactGA from "react-ga";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 const styles = theme => ({
   card: {
@@ -86,16 +87,6 @@ class ClassCard extends React.Component {
       <div>
         <Card className={classes.card}>
           <CardHeader
-            // avatar={
-            //   <Avatar aria-label="Recipe" className={classes.avatar}>
-            //     R
-            //   </Avatar>
-            // }
-            // action={
-            //   <IconButton>
-            //     <MoreVertIcon />
-            //   </IconButton>
-            // }
             title={title}
             subheader={schedule}
           />
@@ -105,13 +96,12 @@ class ClassCard extends React.Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Find more info"
-                        onClick={this.handleHyperlinkClick}>
-              <LinkIcon href={url} />
-            </IconButton>
-            {/*<IconButton aria-label="Share">*/}
-              {/*<ShareIcon />*/}
-            {/*</IconButton>*/}
+            <Tooltip title="Find more info">
+              <IconButton aria-label="Find more info"
+                          onClick={this.handleHyperlinkClick}>
+                <LinkIcon/>
+              </IconButton>
+            </Tooltip>
             {longDesc !== null && longDesc.length !== 0 &&
               <IconButton
                 className={classnames(classes.expand, {

@@ -39,9 +39,9 @@ const genders = [
 
 class IntroPage extends React.Component {
   state = {
-    personName: '',
-    personAge: '',
-    personGender: '',
+    personName: appState.personName,
+    personAge: appState.personAge,
+    personGender: appState.personGender !== "either" ? appState.personGender : "", // otherwise the default state is different than normal
   };
 
   handleChange = name => event => {

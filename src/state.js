@@ -1,3 +1,3 @@
-let appState = {"personName":"", "personAge":30, "personGender":"either"};
+let appState = {"personName":"", "personAge":"", "personGender":"either"};
 
 export {appState};

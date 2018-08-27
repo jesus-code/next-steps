@@ -39,23 +39,6 @@ function getSteps() {
   return ['Welcome', 'Survey', 'Recommendations'];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      ReactGA.pageview('/IntroPage');
-      return <IntroPage/>;
-    case 1:
-      ReactGA.pageview('/Questions');
-      return <Questions questions={questionJSON.questions}/>;
-    case 2:
-      ReactGA.pageview('/SummaryPage');
-      return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON}/>;
-    default:
-      return 'Unknown step';
-  }
-}
-
-
 class StepsStepper extends React.Component {
   state = {
     activeStep: 0,
@@ -107,6 +90,26 @@ class StepsStepper extends React.Component {
     return this.completedSteps() === this.totalSteps();
   }
 
+  getStepContent(activeStep)
+  {
+    // scroll back to the top of the page every time you switch tabs
+    document.scrollingElement.scrollTop = 0;
+
+    switch (activeStep) {
+      case 0:
+        ReactGA.pageview('/IntroPage');
+        return <IntroPage/>;
+      case 1:
+        ReactGA.pageview('/Questions');
+        return <Questions questions={questionJSON.questions}/>;
+      case 2:
+        ReactGA.pageview('/SummaryPage');
+        return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON}/>;
+      default:
+        return 'Unknown step';
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const steps = getSteps();
@@ -130,7 +133,7 @@ class StepsStepper extends React.Component {
         </Stepper>
         <div>
           <div className={classes.contentArea}>
-            {getStepContent(activeStep)}
+            {this.getStepContent(activeStep)}
           </div>
           <div className={classes.bottomButtons}>
             <Button
