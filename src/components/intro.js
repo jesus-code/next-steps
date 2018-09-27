@@ -35,6 +35,10 @@ const genders = [
     value: 'female',
     label: 'Female',
   },
+  {
+    value: 'either',
+    label: 'All',
+  },
 ];
 
 class IntroPage extends React.Component {

@@ -29,7 +29,7 @@ const styles = theme => ({
     paddingBottom: "3rem",
   },
   bottomButtons: {
-    bottom: '10px',
+    bottom: '20px',
     position: 'fixed',
     width: '100%',
   },

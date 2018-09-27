@@ -14,6 +14,7 @@ import LinkIcon from '@material-ui/icons/Link';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as ReactGA from "react-ga";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import Button from "@material-ui/core/Button/Button";
 
 const styles = theme => ({
   card: {
@@ -96,23 +97,21 @@ class ClassCard extends React.Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <Tooltip title="Find more info">
-              <IconButton aria-label="Find more info"
+            <Tooltip title={this.props.url} placement="top">
+              <Button aria-label="Find more info" variant="text"
                           onClick={this.handleHyperlinkClick}>
                 <LinkIcon/>
-              </IconButton>
+                &nbsp;&nbsp;Hope Website
+              </Button>
             </Tooltip>
             {longDesc !== null && longDesc.length !== 0 &&
-              <IconButton
-                className={classnames(classes.expand, {
-                  [classes.expandOpen]: this.state.expanded,
-                })}
-                onClick={this.handleExpandClick}
-                aria-expanded={this.state.expanded}
-                aria-label="Show more"
-              >
-                <ExpandMoreIcon/>
-              </IconButton>
+            <Button variant="text" color="default" className={classnames(classes.expand, {
+              [classes.expandOpen]: this.state.expanded,
+            })}
+                    onClick={this.handleExpandClick}>
+              {this.state.expanded ? null : "More"}
+              <ExpandMoreIcon/>
+            </Button>
             }
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>

@@ -75,7 +75,7 @@ class SummaryPage extends React.Component {
                 alignItems="center"
                 className={classes.container}
               >
-              <Typography variant="headline" gutterBottom className={classes.categoryName}>
+              <Typography variant="display1" gutterBottom className={classes.categoryName}>
                 {c.category}
               </Typography>
 

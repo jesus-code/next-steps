@@ -15,6 +15,14 @@ const styles = theme => ({
   },
   stepStyle: {
     height: '100%',
+  },
+  credits: {
+    bottom: '2px',
+    position: 'fixed',
+    width: "100%",
+  },
+  creditStyle: {
+    color: 'grey',
   }
 });
 
@@ -53,12 +61,15 @@ class Index extends React.Component {
       <div className={classes.root}>
         <AppBar color="default" >
           <Toolbar>
-            <Typography variant="title" color="inherit">
-              Hope Next Steps
+            <Typography variant="headline" color="inherit">
+              Your Journey at Hope — Taking the Next Steps
             </Typography>
           </Toolbar>
         </AppBar>
         <StepsStepper className={classes.stepStyle}/>
+        <Typography variant="caption" className={classes.credits}>
+          Created by <a href="https://github.com/jesus-code" target="_blank" className={classes.creditStyle}> Jesus Code </a>
+        </Typography>
       </div>
     );
   }
