@@ -7,9 +7,11 @@ import Button from '@material-ui/core/Button';
 import IntroPage from "./intro";
 import Questions from "./questions";
 import SummaryPage from "./summary";
+import AllCardsPage from "./allCards";
 import {categoryJSON, questionJSON, classesJSON} from "../data/hope/data";
 import StepButton from "@material-ui/core/StepButton/StepButton";
 import ReactGA from 'react-ga';
+import {appState} from "../state";
 
 const styles = theme => ({
   root: {
@@ -103,8 +105,14 @@ class StepsStepper extends React.Component {
         ReactGA.pageview('/Questions');
         return <Questions questions={questionJSON.questions}/>;
       case 2:
-        ReactGA.pageview('/SummaryPage');
-        return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON}/>;
+        if (appState.personName === "all") {
+          return <AllCardsPage categories={categoryJSON.categories} classesOffered={classesJSON}/>;
+        }
+        else {
+          ReactGA.pageview('/SummaryPage');
+          return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON}/>;
+        }
+            
       default:
         return 'Unknown step';
     }
