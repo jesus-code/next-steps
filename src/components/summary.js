@@ -81,7 +81,7 @@ class SummaryPage extends React.Component {
 
               {this.getClasses(c.classes, classesOffered, personAge, personGender).map((classObj, idx) => {
                 return (
-                  <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc}
+                  <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc} open={false}
                              longDesc={classObj.longDesc} url={classObj.url} schedule={classObj.schedule}/>
                 );
               })}

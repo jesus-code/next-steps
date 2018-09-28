@@ -61,7 +61,7 @@ const styles = theme => ({
 });
 
 class ClassCard extends React.Component {
-  state = { expanded: false };
+  state = { expanded: this.props.open };
 
   handleExpandClick = () => {
     ReactGA.event({
@@ -82,8 +82,8 @@ class ClassCard extends React.Component {
   };
 
   render() {
-    const { classes, title, shortDesc, longDesc, url, schedule, imageURL } = this.props;
-
+    const { classes, title, shortDesc, longDesc, url, schedule, imageURL, open } = this.props;
+    
     return (
       <div>
         <Card className={classes.card}>
@@ -139,6 +139,7 @@ ClassCard.propTypes = {
   url:PropTypes.string.isRequired,
   schedule:PropTypes.string.isRequired,
   imageURL:PropTypes.string,
+  open:PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(ClassCard);

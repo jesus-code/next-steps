@@ -59,7 +59,7 @@ class AllCardsPage extends React.Component {
 
               {this.getClasses(c.classes, classesOffered).map((classObj, idx) => {
                 return (
-                  <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc}
+                  <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc} open={true}
                              longDesc={classObj.longDesc} url={classObj.url} schedule={classObj.schedule}/>
                 );
               })}
