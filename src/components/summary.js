@@ -46,7 +46,7 @@ class SummaryPage extends React.Component {
       personAge = parseInt(appState.personAge);
     
     let personGender = appState.personGender;
-    ReactGA.set({"name":appState.personName, "personAge": personAge, "personGender": personGender });
+    ReactGA.set({"user_id":appState.personName, "personAge": personAge, "personGender": personGender });
     
     ReactGA.timing({
       category: 'Function Timings',
