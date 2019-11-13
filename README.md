@@ -12,7 +12,7 @@
 * Let Joel know to update the published version
 
 ## How to edit and build code on your computer
-[Clone the repo](https://github.com/jomarks/next-steps)
+[Clone the repo](https://github.com/jesus-code/next-steps)
 
 Install it and run:
 
