@@ -25,7 +25,7 @@ class Questions extends React.Component {
       <div className={classes.root}>
         {questions.map((q, index) => {
           return (
-            <RadioQuestion question={q} key={index}/>
+            <RadioQuestion question={q} key={index} />
           );
         })}
       </div>

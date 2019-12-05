@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Typography from "@material-ui/core/Typography/Typography";
-import {appState} from "../state";
+import { appState } from "../state";
 
 const styles = theme => ({
   container: {
@@ -60,50 +60,50 @@ class IntroPage extends React.Component {
 
     return (
       <div>
-        <Typography variant="display3" gutterBottom className={classes.welcome}>
+        <Typography variant="h2" gutterBottom className={classes.welcome}>
           Welcome
         </Typography>
-        <Typography variant="headline" gutterBottom className={classes.welcome}>
+        <Typography variant="h5" gutterBottom className={classes.welcome}>
           Let's find the next step in your Hope Journey!
         </Typography>
         <form noValidate>
-            <TextField
-              id="name"
-              label="Name (optional)"
-              className={classes.textField}
-              value={this.state.personName}
-              onChange={this.handleChange('personName')}
-              margin="normal"
-            />
-            <TextField
-              id="number"
-              label="Age"
-              value={this.state.personAge}
-              onChange={this.handleChange('personAge')}
-              type="number"
-              className={classes.textField}
-              margin="normal"
-            />
-            <TextField
-              id="select-gender"
-              select
-              label="Gender"
-              className={classes.textField}
-              value={this.state.personGender}
-              onChange={this.handleChange('personGender')}
-              SelectProps={{
-                MenuProps: {
-                  className: classes.menu,
-                },
-              }}
-              margin="normal"
-            >
-              {genders.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+          <TextField
+            id="name"
+            label="Name (optional)"
+            className={classes.textField}
+            value={this.state.personName}
+            onChange={this.handleChange('personName')}
+            margin="normal"
+          />
+          <TextField
+            id="number"
+            label="Age"
+            value={this.state.personAge}
+            onChange={this.handleChange('personAge')}
+            type="number"
+            className={classes.textField}
+            margin="normal"
+          />
+          <TextField
+            id="select-gender"
+            select
+            label="Gender"
+            className={classes.textField}
+            value={this.state.personGender}
+            onChange={this.handleChange('personGender')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+          >
+            {genders.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </form>
       </div>
     );

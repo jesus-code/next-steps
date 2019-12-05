@@ -8,10 +8,10 @@ import IntroPage from "./intro";
 import Questions from "./questions";
 import SummaryPage from "./summary";
 import AllCardsPage from "./allCards";
-import {categoryJSON, questionJSON, classesJSON} from "../data/hope/data";
+import { categoryJSON, questionJSON, classesJSON } from "../data/hope/data";
 import StepButton from "@material-ui/core/StepButton/StepButton";
 import ReactGA from 'react-ga';
-import {appState} from "../state";
+import { appState } from "../state";
 
 const styles = theme => ({
   root: {
@@ -31,7 +31,7 @@ const styles = theme => ({
     paddingBottom: "3rem",
   },
   bottomButtons: {
-    bottom: '20px',
+    bottom: '25px',
     position: 'fixed',
     width: '100%',
   },
@@ -92,27 +92,26 @@ class StepsStepper extends React.Component {
     return this.completedSteps() === this.totalSteps();
   }
 
-  getStepContent(activeStep)
-  {
+  getStepContent(activeStep) {
     // scroll back to the top of the page every time you switch tabs
     document.scrollingElement.scrollTop = 0;
 
     switch (activeStep) {
       case 0:
         ReactGA.pageview('/IntroPage');
-        return <IntroPage/>;
+        return <IntroPage />;
       case 1:
         ReactGA.pageview('/Questions');
-        return <Questions questions={questionJSON.questions}/>;
+        return <Questions questions={questionJSON.questions} />;
       case 2:
         if (appState.personName === "all") {
-          return <AllCardsPage categories={categoryJSON.categories} classesOffered={classesJSON}/>;
+          return <AllCardsPage categories={categoryJSON.categories} classesOffered={classesJSON} />;
         }
         else {
           ReactGA.pageview('/SummaryPage');
-          return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON}/>;
+          return <SummaryPage questions={questionJSON.questions} categories={categoryJSON.categories} classesOffered={classesJSON} />;
         }
-            
+
       default:
         return 'Unknown step';
     }
@@ -154,13 +153,13 @@ class StepsStepper extends React.Component {
               Back
             </Button>
             {activeStep !== steps.length - 1 &&
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleNext}
-              className={classes.button}
-            >
-              Next
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.handleNext}
+                className={classes.button}
+              >
+                Next
             </Button>
             }
           </div>

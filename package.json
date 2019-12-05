@@ -4,15 +4,13 @@
   "private": true,
   "homepage": "http://jomarks.github.io/next-steps/",
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "latest",
-    "jss": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-ga": "^2.5.3",
-    "react-jss": "latest",
-    "react-scripts": "latest"
+    "@material-ui/styles": "^4.7.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-ga": "^2.7.0",
+    "react-scripts": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,5 +22,17 @@
   },
   "devDependencies": {
     "gh-pages": "^1.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

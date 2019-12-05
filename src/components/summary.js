@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography/Typography";
 import ClassCard from "./card";
 import Grid from "@material-ui/core/Grid/Grid";
-import {appState} from "../state";
+import { appState } from "../state";
 import ReactGA from "react-ga";
 
 const styles = theme => ({
@@ -34,7 +34,7 @@ class SummaryPage extends React.Component {
 
   render() {
     const { classes, questions, categories, classesOffered } = this.props;
-    
+
     let renderStart = Date.now();
 
     let sortedCategories = this.calculateCategories(questions, categories);
@@ -44,10 +44,10 @@ class SummaryPage extends React.Component {
       personAge = 30;
     else
       personAge = parseInt(appState.personAge);
-    
+
     let personGender = appState.personGender;
-    ReactGA.set({"user_id":appState.personName, "personAge": personAge, "personGender": personGender });
-    
+    ReactGA.set({ "user_id": appState.personName, "personAge": personAge, "personGender": personGender });
+
     ReactGA.timing({
       category: 'Function Timings',
       variable: 'summaryRender',
@@ -56,7 +56,7 @@ class SummaryPage extends React.Component {
 
     return (
       <div>
-        <Typography variant="display3" gutterBottom className={classes.summary} >
+        <Typography variant="h2" gutterBottom className={classes.summary} >
           Summary
         </Typography>
         {sortedCategories.map((c, index) => {
@@ -67,35 +67,33 @@ class SummaryPage extends React.Component {
             value: c.total,
           });
           return (
-              <Grid
-                key={index}
-                container
-                direction="column"
-                justify="space-between"
-                alignItems="center"
-                className={classes.container}
-              >
-              <Typography variant="display1" gutterBottom className={classes.categoryName}>
+            <Grid
+              key={index}
+              container
+              direction="column"
+              justify="space-between"
+              alignItems="center"
+              className={classes.container}
+            >
+              <Typography variant="h4" gutterBottom className={classes.categoryName}>
                 {c.category}
               </Typography>
 
               {this.getClasses(c.classes, classesOffered, personAge, personGender).map((classObj, idx) => {
                 return (
                   <ClassCard key={idx} title={classObj.title} shortDesc={classObj.shortDesc} open={false}
-                             longDesc={classObj.longDesc} url={classObj.url} schedule={classObj.schedule}/>
+                    longDesc={classObj.longDesc} url={classObj.url} schedule={classObj.schedule} />
                 );
               })}
-              </Grid>
+            </Grid>
           );
         })}
       </div>
     );
   }
 
-  initCategoryTotals(categories)
-  {
-    for (let catName in categories)
-    {
+  initCategoryTotals(categories) {
+    for (let catName in categories) {
       let cat = categories[catName];
       if (cat === null || cat === undefined) {
         ReactGA.exception({
@@ -109,14 +107,12 @@ class SummaryPage extends React.Component {
     }
   }
 
-  calculateCategories(questions, categories)
-  {
+  calculateCategories(questions, categories) {
     this.initCategoryTotals(categories);
 
     for (let q of questions) {
       if (q.hasOwnProperty("value") && q.value > 0) {
-        for (let category of q.categories)
-        {
+        for (let category of q.categories) {
           let c = categories[category];
           if (c === null || c === undefined) {
             ReactGA.exception({
@@ -149,8 +145,7 @@ class SummaryPage extends React.Component {
     return catArray;
   }
 
-  getClasses(classKeys, classesOffered, personAge, personGender)
-  {
+  getClasses(classKeys, classesOffered, personAge, personGender) {
     let categoryClasses = [];
     for (let classKey of classKeys) {
       let classObj = classesOffered.classes[classKey];

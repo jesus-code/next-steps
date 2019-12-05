@@ -9,14 +9,15 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 const styles = theme => ({
   root: {
-  },
-  formControl: {
-    margin: theme.spacing.unit,
+    paddingTop: '3em'
   },
   group: {
     flexDirection: 'row',
     display: 'block',
-    margin: `${theme.spacing.unit}px 0`,
+    paddingTop: '1em',
+  },
+  disagree: {
+    paddingRight: '1.5em',
   },
 });
 
@@ -28,7 +29,7 @@ class RadioQuestion extends React.Component {
   handleChange = event => {
     this.setState({ value: event.target.value });
     this.props.question.value = parseInt(event.target.value, 10);
-    
+
   };
 
   render() {
@@ -36,11 +37,11 @@ class RadioQuestion extends React.Component {
 
     return (
       <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
+        <FormControl component="fieldset">
           <FormLabel component="legend">{question.text}</FormLabel>
           <RadioGroup
-            aria-label="gender"
-            name="gender2"
+            aria-label="formQuestion"
+            name="formQuestion"
             className={classes.group}
             value={this.state.value}
             onChange={this.handleChange}
@@ -50,6 +51,7 @@ class RadioQuestion extends React.Component {
               control={<Radio color="primary" />}
               label="Disagree"
               labelPlacement="start"
+              className={classes.disagree}
             />
             <FormControlLabel
               value="2"

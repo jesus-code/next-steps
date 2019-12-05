@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
 import LinkIcon from '@material-ui/icons/Link';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as ReactGA from "react-ga";
@@ -43,20 +40,18 @@ const styles = theme => ({
     display: 'flex',
   },
   expand: {
+    marginLeft: 'auto',
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto',
     [theme.breakpoints.up('sm')]: {
       marginRight: -8,
     },
   },
   expandOpen: {
+    marginLeft: 'auto',
     transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
 });
 
@@ -67,23 +62,23 @@ class ClassCard extends React.Component {
     ReactGA.event({
       category: 'ClassCategory',
       action: 'Class expanded',
-      label:this.props.title,
+      label: this.props.title,
     });
     this.setState(state => ({ expanded: !state.expanded }));
   };
-  
+
   handleHyperlinkClick = () => {
     ReactGA.event({
       category: 'ClassCategory',
       action: 'Class clicked',
-      label:this.props.url,
+      label: this.props.url,
     });
     window.open(this.props.url, '_blank');
   };
 
   render() {
     const { classes, title, shortDesc, longDesc, url, schedule, imageURL, open } = this.props;
-    
+
     return (
       <div>
         <Card className={classes.card}>
@@ -96,22 +91,20 @@ class ClassCard extends React.Component {
               {shortDesc}
             </Typography>
           </CardContent>
-          <CardActions className={classes.actions} disableActionSpacing>
+          <CardActions className={classes.actions} disableSpacing>
             <Tooltip title={this.props.url} placement="top">
               <Button aria-label="Find more info" variant="text"
-                          onClick={this.handleHyperlinkClick}>
-                <LinkIcon/>
+                onClick={this.handleHyperlinkClick}>
+                <LinkIcon />
                 &nbsp;&nbsp;Hope Website
               </Button>
             </Tooltip>
             {longDesc !== null && longDesc.length !== 0 &&
-            <Button variant="text" color="default" className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-                    onClick={this.handleExpandClick}>
-              {this.state.expanded ? null : "More"}
-              <ExpandMoreIcon/>
-            </Button>
+              <Button variant="text" color="default" className={this.state.expanded ? classes.expandOpen : classes.expand}
+                onClick={this.handleExpandClick}>
+                {this.state.expanded ? null : "More"}
+                <ExpandMoreIcon />
+              </Button>
             }
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
@@ -136,10 +129,10 @@ ClassCard.propTypes = {
   title: PropTypes.string.isRequired,
   shortDesc: PropTypes.string.isRequired,
   longDesc: PropTypes.array.isRequired,
-  url:PropTypes.string.isRequired,
-  schedule:PropTypes.string.isRequired,
-  imageURL:PropTypes.string,
-  open:PropTypes.bool.isRequired,
+  url: PropTypes.string.isRequired,
+  schedule: PropTypes.string.isRequired,
+  imageURL: PropTypes.string,
+  open: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(ClassCard);
